@@ -7,10 +7,10 @@ namespace BlockSimApi.Models
     {
         public int Id { get; set; }
 
-        [MaxLength(42)]
+        [Required, MaxLength(42)]
         public string Sender { get; set; } = null!;
 
-        [MaxLength(42)]
+        [Required, MaxLength(42)]
         public string Receiver { get; set; } = null!;
 
         [Precision(18, 4)]
