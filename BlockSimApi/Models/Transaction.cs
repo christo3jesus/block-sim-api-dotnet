@@ -17,5 +17,9 @@ namespace BlockSimApi.Models
         public decimal Amount { get; set; }
 
         public DateTime Timestamp { get; private set; } = DateTime.UtcNow;
+
+        public int BlockId { get; set; }
+
+        public virtual Block Block { get; set; } = null!;
     }
 }
