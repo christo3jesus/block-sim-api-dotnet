@@ -7,5 +7,6 @@
         public string Receiver { get; set; } = null!;
         public decimal Amount { get; set; }
         public DateTime Timestamp { get; set; }
+        public int BlockId { get; set; }
     }
 }
