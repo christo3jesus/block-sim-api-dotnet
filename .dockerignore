@@ -1,0 +1,10 @@
+bin/
+obj/
+*.db
+*.mdf
+*.ldf
+*.sqlite
+node_modules/
+.env
+.vscode/
+.idea/

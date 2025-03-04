@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-CU17-ubuntu-22.04
+    container_name: sqlserver
+    restart: always
+    environment:
+      SA_PASSWORD: "Y0urStr0ngP455w0rd"
+      MSSQL_PID: "Express"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+    networks:
+      - app_network
+
+  api:
+    image: blocksimapi
+    container_name: blocksim_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Database=BlockchainDB;User Id=sa;Password=Y0urStr0ngP455w0rd;TrustServerCertificate=True;MultipleActiveResultSets=true;
+    ports:
+      - "8080:8080"
+    networks:
+      - app_network
+
+volumes:
+  sql_data:
+
+networks:
+  app_network:
+    driver: bridge
